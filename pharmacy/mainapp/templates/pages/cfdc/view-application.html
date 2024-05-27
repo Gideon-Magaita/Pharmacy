@@ -1,0 +1,231 @@
+{% extends 'pages/cfdc/base.html' %}
+{% block content %}
+<!-- Content Header (Page header) -->
+<div class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h2 class="m-0"></h2>
+      </div><!-- /.col -->
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item"><a href="{% url 'cfdc_home' %}">Home</a></li>
+          <li class="breadcrumb-item active"> Applicant details</li>
+        </ol>
+      </div><!-- /.col -->
+    </div><!-- /.row -->
+  </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+<!-- Custom CSS -->
+<style>
+    .section-title {
+      background-color: #1b426a; /* Bootstrap primary color */
+      color: white;
+      font-size: 1.5rem;
+      padding: 10px;
+      border-radius: 5px;
+      margin-bottom: 15px;
+    }
+    .card-section {
+      margin-bottom: 30px;
+    }
+  </style>
+<!-- Main content -->
+<section class="content">
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 col-md-6 col-sm-3">
+        <!--messages-->
+        {% include 'messages.html' %}
+        <!--messages-->
+        <div class="card shadow">
+          <div class="card-header" style="display: flex;align-items: center;">
+            <h2>Applicant Details</h2>
+            <a href="{% url 'cfdc_applications' %}" class="btn btn-dark" style="margin-left:auto;">Go back</a>
+          </div>
+          <div class="card-body">
+            {% if details %}
+                <div class="card-section">
+                    <div class="section-title">Details Filled by Applicant</div>
+                    <div class="table-responsive">
+                      <table class="table table-bordered">
+                        <tbody>
+                          <tr>
+                            <td><strong>Name:</strong></td>
+                            <td>{{ details.applicant_name }}</td>
+                          </tr>
+                          <tr>
+                            <td><strong>Full Address:</strong></td>
+                            <td>{{ details.full_address }}</td>
+                          </tr>
+                          <tr>
+                            <td><strong>Age:</strong></td>
+                            <td>{{ details.applicant_age }}</td>
+                          </tr>
+                          <tr>
+                            <td><strong>Gender:</strong></td>
+                            <td>{{ details.gender }}</td>
+                          </tr>
+                          <tr>
+                            <td><strong>Phone Number:</strong></td>
+                            <td>{{ details.phone_number }}</td>
+                          </tr>
+                          <tr>
+                            <td><strong>Pharmacy Name:</strong></td>
+                            <td>{{ details.pharmacy_name }}</td>
+                          </tr>
+                          <tr>
+                            <td><strong>Location:</strong></td>
+                            <td>{{ details.location }}</td>
+                          </tr>
+                          <tr>
+                            <td><strong>Full Name:</strong></td>
+                            <td>{{ details.full_name }}</td>
+                          </tr>
+                          <tr>
+                            <td><strong>Address:</strong></td>
+                            <td>{{ details.address }}</td>
+                          </tr>
+                          <tr>
+                            <td><strong>Phone:</strong></td>
+                            <td>{{ details.phone }}</td>
+                          </tr>
+                          <tr>
+                            <td><strong>Registration Number:</strong></td>
+                            <td>{{ details.registration_number }}</td>
+                          </tr>
+                          <tr>
+                            <td><strong>Registration Date:</strong></td>
+                            <td>{{ details.registration_date }}</td>
+                          </tr>
+                          <tr>
+                            <td><strong>Certificate:</strong></td>
+                            <td><a href="{{ details.certificate.url }}">View Certificate</a></td>
+                          </tr>
+                          <tr>
+                            <td><strong>Application Date:</strong></td>
+                            <td>{{ details.application_date }}</td>
+                          </tr>
+                          <tr>
+                            <td><strong>Signature:</strong></td>
+                            <td>{{ details.signature|yesno:"Yes,No" }}</td>
+                          </tr>
+                          <tr>
+                            <td><strong>Status:</strong></td>
+                            <td>{{ details.status }}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                </div>
+                <div class="card-section">
+                    <div class="section-title">Details Filled by VEO</div>
+                    <div class="table-responsive">
+                      <table class="table table-bordered">
+                        <tbody>
+                          <tr>
+                            <td><strong>Nationality:</strong></td>
+                            <td>{{ details.applicant_nationality }}</td>
+                          </tr>
+                          <tr>
+                            <td><strong>Behaviour:</strong></td>
+                            <td>{{ details.applicant_behaviour }}</td>
+                          </tr>
+                          <tr>
+                            <td><strong>Other Comments:</strong></td>
+                            <td>{{ details.other_comment }}</td>
+                          </tr>
+                          <tr>
+                            <td><strong>Received Date:</strong></td>
+                            <td>{{ details.received_date }}</td>
+                          </tr>
+                          <tr>
+                            <td><strong>Processed Date:</strong></td>
+                            <td>{{ details.processed_date }}</td>
+                          </tr>
+                          <tr>
+                            <td><strong>VEO Signature:</strong></td>
+                            <td>{{ details.veo_signature|yesno:"Yes,No" }}</td>
+                          </tr>
+                          <tr>
+                            <td><strong>VEO Name:</strong></td>
+                            <td>{{ details.veo_name }}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                </div>
+                <div class="card-section">
+                    <div class="section-title">Details Filled by WEO</div>
+                    <div class="table-responsive">
+                      <table class="table table-bordered">
+                        <tbody>
+                          <tr>
+                            <td><strong>Received Date from VEO:</strong></td>
+                            <td>{{ details.received_date_from_veo }}</td>
+                          </tr>
+                          <tr>
+                            <td><strong>Interview Date:</strong></td>
+                            <td>{{ details.interview_date }}</td>
+                          </tr>
+                          <tr>
+                            <td><strong>Interview Result:</strong></td>
+                            <td>{{ details.interview_result }}</td>
+                          </tr>
+                          <tr>
+                            <td><strong>Comments:</strong></td>
+                            <td>{{ details.comments }}</td>
+                          </tr>
+                          <tr>
+                            <td><strong>WEO Name:</strong></td>
+                            <td>{{ details.weo_name }}</td>
+                          </tr>
+                          <tr>
+                            <td><strong>WEO Signature:</strong></td>
+                            <td>{{ details.weo_signature|yesno:"Yes,No" }}</td>
+                          </tr>
+                          <tr>
+                            <td><strong>Submission Date:</strong></td>
+                            <td>{{ details.submission_date }}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                </div>
+                <div class="card-section">
+                    <div class="section-title">Details Filled by CFDC</div>
+                    <div class="table-responsive">
+                      <table class="table table-bordered">
+                        <tbody>
+                          <tr>
+                            <td><strong>CFDC Received Date:</strong></td>
+                            <td>{{ details.cfdc_received_date }}</td>
+                          </tr>
+                          <tr>
+                            <td><strong>CFDC Comment:</strong></td>
+                            <td>{{ details.cfdc_comment }}</td>
+                          </tr>
+                          <tr>
+                            <td><strong>CFDC Name:</strong></td>
+                            <td>{{ details.cfdc_name }}</td>
+                          </tr>
+                          <tr>
+                            <td><strong>CFDC Signature:</strong></td>
+                            <td>{{ details.cfdc_signature|yesno:"Yes,No" }}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                </div>
+            {% else %}
+                <p>No details available.</p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><!--/. container-fluid -->
+</section>
+
+{% endblock %}

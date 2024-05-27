@@ -1,0 +1,237 @@
+{% extends 'pages/applicant/base.html' %}
+{% block content %}
+<!-- Content Header (Page header) -->
+<div class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h2 class="m-0"></h2>
+      </div><!-- /.col -->
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+          <li class="breadcrumb-item active">Permit Requests</li>
+        </ol>
+      </div><!-- /.col -->
+    </div><!-- /.row -->
+  </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<!-- Main content -->
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12 col-md-6 col-sm-3">
+        <!--messages-->
+        {% include 'messages.html' %}
+        <!--messages-->
+        <div class="card shadow">
+          <div class="card-header">
+            <h2>Permit Requests Details</h2>
+          </div>
+          <div class="card-body">
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#staticBackdrop">
+             Request Permit
+            </button>
+    
+            <!-- Modal -->
+            <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel"> Request Permit Form</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <form action="" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-row">
+                            <div class="col-md-4 mb-3">
+                                {{ form.applicant_name.label_tag }}
+                                {{ form.applicant_name }}
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                {{ form.full_address.label_tag }}
+                                {{ form.full_address }}
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                {{ form.applicant_age.label_tag }}
+                                {{ form.applicant_age }}
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-4 mb-3">
+                                {{ form.gender.label_tag }}
+                                {{ form.gender }}
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                {{ form.phone_number.label_tag }}
+                                {{ form.phone_number }}
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                {{ form.pharmacy_name.label_tag }}
+                                {{ form.pharmacy_name }}
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-4 mb-3">
+                                {{ form.location.label_tag }}
+                                {{ form.location }}
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                {{ form.full_name.label_tag }}
+                                {{ form.full_name }}
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                {{ form.address.label_tag }}
+                                {{ form.address }}
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-4 mb-3">
+                                {{ form.phone.label_tag }}
+                                {{ form.phone }}
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                {{ form.registration_number.label_tag }}
+                                {{ form.registration_number }}
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                {{ form.registration_date.label_tag }}
+                                {{ form.registration_date }}
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-4 mb-3">
+                                {{ form.certificate.label_tag }}
+                                {{ form.certificate }}
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                {{ form.application_date.label_tag }}
+                                {{ form.application_date }}
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                {{ form.signature.label_tag }}
+                                {{ form.signature }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <button type="button" class="btn btn-secondary form-control" data-dismiss="modal">Close</button>
+                            </div>
+                            <div class="col-md-6">
+                                <button type="submit" class="btn btn-info form-control">Save Details</button>
+                            </div>
+                        </div>
+                    </form>
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--table-->
+            <div class="table-responsive animate__animated animate__fadeIn">
+              <table id="mytable" class="table table-bordered table-striped">
+                <thead>
+
+                  <tr>
+                    <th>Applicant Name</th>
+                    <th>Applicant Address</th>
+                    <th>Applicant Age</th>
+                    <th>Gender</th>
+                    <th>Phone Number</th>
+                    <th>Pharmacy Name</th>
+                    <th>Location</th>
+                    <th>Drug Outlets Name</th>
+                    <th>Drug Outlets Phone Number</th>
+                    <th>Registration Number</th>
+                    <th>Registration Date</th>
+                    <th>Certificate</th>
+                    <th>Application Date</th>
+                    <th>Signature</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+
+                </thead>
+
+                <tbody>
+                  {% for a in application %}
+                  <tr>
+                    <td>{{ a.applicant_name }}</td>
+                    <td>{{ a.full_address }}</td>
+                    <td>{{ a.applicant_age }}</td>
+                    <td>{{ a.gender }}</td>
+                    <td>{{ a.phone_number}}</td>
+                    <td>{{ a.pharmacy_name}}</td>
+                    <td>{{ a.location }}</td>
+                    <td>{{ a.full_name }}</td>  
+                    <td>{{ a.phone }}</td>
+                    <td>{{ a.registration_number}}</td>
+                    <td>{{ a.registration_date }}</td>
+                    <td>
+                        {% if a.certificate %}
+                        <a href="{{a.certificate.url}}">Preview</a>
+                        {% else %}
+                         <p>No document found</p>
+                         {% endif %}
+                      </td>
+  
+                      <td>{{ a.application_date }}</td>
+                      
+                      <td>{{ a.signature }}</td>
+                   
+                      <td>
+                        <h5>
+                          {% if a.status == 'pending' %}
+                          <span class="badge bg-warning">{{ a.status }}</span>
+                          {% elif a.status == 'rejected' %}
+                          <span class="badge bg-danger">{{ a.status }}</span>
+                          {% else %}
+                          <span class="badge bg-success">{{ a.status }}</span>
+                          {% endif %}
+                      </h5> 
+                      </td>
+                      
+                      <td style="display:flex;">
+                        <a href="{% url 'edit_permit' a.id %}" class="btn btn-success" style="margin-right: 10px;">Edit</a>
+                        <a onclick="return confirm('Are you sure you want to delete this data?')" href="{% url 'delete_permit' a.id %}" class="btn btn-danger">Delete</a>
+                      </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+            <!--table-->
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!--/. container-fluid -->
+</section>
+  <!-- /.content -->
+  <script>
+    document.getElementById('company-select').addEventListener('change', function() {
+        var companyId = this.value;
+        fetch(`/get_services/?company_id=${companyId}`)
+        .then(response => response.json())
+        .then(data => {
+            var select = document.getElementById('service-select');
+            select.innerHTML = ''; // Clear previous options
+            data.forEach(service => {
+                var option = document.createElement('option');
+                option.value = service.id;
+                option.text = service.service_name; // Corrected field name
+                select.appendChild(option);
+            });
+        })
+        .catch(error => console.error('Error fetching services:', error));
+    });
+    </script>
+
+{% endblock %}

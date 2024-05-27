@@ -1,0 +1,116 @@
+{% extends 'pages/cfdc/base.html' %}
+{% block content %}
+<!-- Content Header (Page header) -->
+<div class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h2 class="m-0"></h2>
+      </div><!-- /.col -->
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item"><a href="{% url 'cfdc_home' %}">Home</a></li>
+          <li class="breadcrumb-item active">Applications</li>
+        </ol>
+      </div><!-- /.col -->
+    </div><!-- /.row -->
+  </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<!-- Main content -->
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12 col-md-6 col-sm-3">
+        <!--messages-->
+        {% include 'messages.html' %}
+        <!--messages-->
+        <div class="card shadow">
+          <div class="card-header">
+            <h2>Applications</h2>
+          </div>
+          <div class="card-body">
+            <!--table-->
+            <div class="table-responsive animate__animated animate__fadeIn">
+              <table id="mytable" class="table table-bordered table-striped">
+                <thead>
+
+                  <tr>
+                    <th>Applicant Name</th>
+                    <th>Applicant Address</th>
+                    <th>Applicant Age</th>
+                    <th>Gender</th>
+                    <th>Phone Number</th>
+                    <th>Pharmacy Name</th>
+                    <th>Location</th>
+                    <th>Drug Outlets Name</th>
+                    <th>Drug Outlets Phone Number</th>
+                    <th>Registration Number</th>
+                    <th>Registration Date</th>
+                    <th>Certificate</th>
+                    <th>Application Date</th>
+                    <th>Signature</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+
+                </thead>
+
+                <tbody>
+                  {% for a in application %}
+                  <tr>
+                    <td>{{ a.applicant_name }}</td>
+                    <td>{{ a.full_address }}</td>
+                    <td>{{ a.applicant_age }}</td>
+                    <td>{{ a.gender }}</td>
+                    <td>{{ a.phone_number}}</td>
+                    <td>{{ a.pharmacy_name}}</td>
+                    <td>{{ a.location }}</td>
+                    <td>{{ a.full_name }}</td>  
+                    <td>{{ a.phone }}</td>
+                    <td>{{ a.registration_number}}</td>
+                    <td>{{ a.registration_date }}</td>
+                    <td>
+                        {% if a.certificate %}
+                        <a href="{{a.certificate.url}}">Preview</a>
+                        {% else %}
+                         <p>No document found</p>
+                         {% endif %}
+                      </td>
+  
+                      <td>{{ a.application_date }}</td>
+                      
+                      <td>{{ a.signature }}</td>
+                   
+                      <td>
+                        <h5>
+                          {% if a.status == 'pending' %}
+                          <span class="badge bg-warning">{{ a.status }}</span>
+                          {% elif a.status == 'rejected' %}
+                          <span class="badge bg-danger">{{ a.status }}</span>
+                          {% else %}
+                          <span class="badge bg-success">{{ a.status }}</span>
+                          {% endif %}
+                      </h5> 
+                      </td>
+                      
+                      <td style="display:flex;">
+                        <a href="{% url 'cfdc_comment' a.id %}" class="btn btn-success" style="margin-right: 10px;">Add Details</a>
+                        <a href="{% url 'cfdc_view_details' a.id %}" class="btn btn-secondary" style="margin-right: 10px;">View</a>
+                      </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+            <!--table-->
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!--/. container-fluid -->
+</section>
+
+{% endblock %}

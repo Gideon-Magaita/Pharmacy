@@ -1,0 +1,125 @@
+{% extends 'pages/applicant/base.html' %}
+{% block content %}
+<!-- Content Header (Page header) -->
+<div class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h2 class="m-0"></h2>
+      </div><!-- /.col -->
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+          <li class="breadcrumb-item active">Edit Permit Requests</li>
+        </ol>
+      </div><!-- /.col -->
+    </div><!-- /.row -->
+  </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<!-- Main content -->
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12 col-md-6 col-sm-3">
+        <!--messages-->
+        {% include 'messages.html' %}
+        <!--messages-->
+        <div class="card shadow">
+          <div class="card-header">
+            <h2>Edit Permit Requests Details</h2>
+          </div>
+          <div class="card-body">
+            <form action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-row">
+                    <div class="col-md-4 mb-3">
+                        {{ form.applicant_name.label_tag }}
+                        {{ form.applicant_name }}
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        {{ form.full_address.label_tag }}
+                        {{ form.full_address }}
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        {{ form.applicant_age.label_tag }}
+                        {{ form.applicant_age }}
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-4 mb-3">
+                        {{ form.gender.label_tag }}
+                        {{ form.gender }}
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        {{ form.phone_number.label_tag }}
+                        {{ form.phone_number }}
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        {{ form.pharmacy_name.label_tag }}
+                        {{ form.pharmacy_name }}
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-4 mb-3">
+                        {{ form.location.label_tag }}
+                        {{ form.location }}
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        {{ form.full_name.label_tag }}
+                        {{ form.full_name }}
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        {{ form.address.label_tag }}
+                        {{ form.address }}
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-4 mb-3">
+                        {{ form.phone.label_tag }}
+                        {{ form.phone }}
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        {{ form.registration_number.label_tag }}
+                        {{ form.registration_number }}
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        {{ form.registration_date.label_tag }}
+                        {{ form.registration_date }}
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-4 mb-3">
+                        {{ form.certificate.label_tag }}
+                        {{ form.certificate }}
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        {{ form.application_date.label_tag }}
+                        {{ form.application_date }}
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        {{ form.signature.label_tag }}
+                        {{ form.signature }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <a href="{% url 'request_permit' %}" class="btn btn-secondary form-control">Close</a>
+                    </div>
+                    <div class="col-md-6">
+                        <button type="submit" class="btn btn-info form-control">Save Details</button>
+                    </div>
+                </div>
+            </form>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!--/. container-fluid -->
+</section>
+ 
+
+{% endblock %}

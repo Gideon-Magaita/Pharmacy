@@ -1,0 +1,54 @@
+{% load static %}
+<aside class="main-sidebar sidebar-dark-primary">
+    <!-- Brand Logo -->
+    <a href="{% url 'tfda_home' %}" class="brand-link">
+      <img src="{% static 'assets/dist/img/AdminLTELogo.png' %}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <span class="brand-text font-weight-light">OAP</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar p-0">
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+          <li class="nav-item menu-open">
+            <a href="{% url 'tfda_home' %}" class="nav-link {% if request.path == '/tfda_home'%} active {% endif %}">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Dashboard
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+          </li>
+          <div class="dropdown-divider"></div>
+
+          <li class="nav-item">
+            <a href="{% url 'tfda_applications' %}" class="nav-link {% if request.path == '/tfda_applications' %} active {% endif %}">
+              <i class="nav-icon fas fa-copy"></i>
+              <p>
+                Applications
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+          </li>
+          <div class="dropdown-divider"></div>
+
+          <li class="nav-item">
+            <a href="{% url 'logoutUser' %}" class="nav-link">
+              <i class="nav-icon fas fa-lock"></i>
+              <p>
+                Logout
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+          </li>
+        <div class="dropdown-divider"></div>
+          
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
